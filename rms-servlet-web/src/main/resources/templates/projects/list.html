@@ -23,27 +23,29 @@
         <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
             <thead>
             <tr>
-                <th class="mdl-data-table__cell--non-numeric">User Name</th>
-                <th>Password</th>
+                <th class="mdl-data-table__cell--non-numeric">Project Name</th>
+                <th>Members</th>
                 <th>Actions</th>
             </tr>
             </thead>
             <tbody>
-                <tr th:each="user:${users}">
+                <tr th:each="project:${projects}">
                     <td class="mdl-data-table__cell--non-numeric" th:text="${user.userName}"></td>
                     <td th:text="${user.password}"></td>
                     <td>
-                        <a th:href="@{${user.id}}" class="mdl-button mdl-js-button mdl-button--icon">
-                            <i class="material-icons">edit</i>
+                        <a th:href="@{${project.id}}" class="mdl-button mdl-js-button mdl-button--icon">
+                            <i class="material-icons">add</i>
                         </a>
-                        <a href="#" class="mdl-button mdl-js-button mdl-button--icon" >
-                            <i class="material-icons">delete</i>
-                        </a>
+                        <form th:action="@{'/projects/'+${project.id}}" th:method="delete">
+                            <button type="submit" class="mdl-button mdl-js-button mdl-button--icon" >
+                                <i class="material-icons">delete</i>
+                            </button>
+                        </form>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <a href="#" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+        <a th:href="@{/users/add}" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
             Add User
         </a>
     </main>

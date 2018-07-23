@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "user")
@@ -14,8 +16,12 @@ public class User
     @GeneratedValue
     private int id;
 
+    @NotBlank
     @Column(name = "user_name")
     private String userName;
+
+    @NotBlank
+    @Size(min = 6,message = "Password should have at least 6 characters")
     private String password;
 
     public User(){
@@ -30,6 +36,10 @@ public class User
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id){
+        this.id = id;
     }
 
     public String getUserName() {
